@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<base href="./" />
+    <title>Administración de Contactos</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <h1>Resultado de la operación</h1>
+            <!--display error if any-->
+            <div class="alert alert-danger" role="alert" th:if="${!status}">
+                <strong>Error:</strong>
+                <span th:text="${message}"></span>
+            </div>
+            
+            <div th:if="${status}">
+            	<label>Cantidad de Contactos:</label>
+				<span th:text="${resultado.totalContactos}"> </span>
+				<br>
+            	<label>Cantidad de Contactos OK (csv):</label>
+				<span th:text="${resultado.totalContactosOk}"> </span>
+				<br>
+				<label>Cantidad de Contactos Error (csv):</label>
+				<span th:text="${resultado.totalContactosError}"> </span>
+            	<br>
+            	<label>Cantidad de Contactos OK (API):</label>
+				<span th:text="${resultado.totalContactosOk_API}"> </span>
+				<br>
+				<label>Cantidad de Contactos Error (API):</label>
+				<span th:text="${resultado.totalContactosError_API}"> </span>
+
+			</div>
+            <!--display users list-->
+        </div>
+    </div>
+</div> 
+<br>
+<br>
+<a href=".">Volver página principal</a>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

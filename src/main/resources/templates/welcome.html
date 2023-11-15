@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Administración de Contactos</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Administración de Contactos</h1>
+
+    </div>
+<div>
+	<fieldset>
+	<legend>Seleccionar la operación a realizar..</legend>
+		<form method="post" th:action="@{/upload-csv}" enctype="multipart/form-data">
+     
+   			<input type="checkbox" id="exp" name="fav_language" value="exp" th:name="optAdd" onchange="document.getElementById('file').disabled = !this.checked;document.getElementById('type').disabled = !this.checked;document.getElementById('enviar').disabled = !this.checked;"> 
+    		<label for="html"><strong>Crear</strong></label>
+   			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+   
+   			<label for="html"><strong>Tipo Contacto:</strong></label> &nbsp
+    		<select name="type" id="type" th:name="typeContactAdd" disabled="true">
+  				<option value="puri">Purina</option>
+  				<option value="prof">Professional</option>
+			</select>
+			&nbsp&nbsp&nbsp
+    		<input type="file" name="file" class="form-control-file" id="file" accept=".csv" disabled="true">
+    		&nbsp&nbsp&nbsp
+    		<button id="enviar" type="submit" style="left:20px;" class="btn btn-primary" disabled="true">Importar Clientes</button>
+		</form>
+		
+		<br>
+
+		<form method="post" th:action="@{/upload-csv}" enctype="multipart/form-data">
+     
+   			<input type="checkbox" id="modi" name="modi" value="exp" th:name="optMod" onchange="document.getElementById('file_modi').disabled = !this.checked;document.getElementById('type_modi').disabled = !this.checked;document.getElementById('enviar_modi').disabled = !this.checked;"> 
+    		<label for="html"><strong>Modificar</strong></label>
+   			&nbsp&nbsp&nbsp
+   
+   			<label for="html"><strong>Tipo Contacto:</strong></label> &nbsp
+    		<select name="type_modi" id="type_modi" th:name="typeContactModi" disabled="true">
+  				<option value="puri">Purina</option>
+  				<option value="prof">Professional</option>
+			</select>
+			&nbsp&nbsp&nbsp
+    		<input type="file" name="file_modi" class="form-control-file" id="file_modi" accept=".csv" disabled="true">
+    		&nbsp&nbsp&nbsp
+    		<button id="enviar_modi" type="submit" style="left:20px;" class="btn btn-primary" disabled="true">Modificar Clientes</button>
+		</form>
+		
+		<br>
+
+		<form method="post" th:action="@{/upload-deletecsv}" enctype="multipart/form-data">
+     
+   			<input type="checkbox" id="del" name="del" value="exp" th:name="optDel" onchange="document.getElementById('file_del').disabled = !this.checked;document.getElementById('enviar_del').disabled = !this.checked;"> 
+    		<label for="html"><strong>Borrar</strong></label>
+   			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  
+    		<input type="file" name="file_del" class="form-control-file" id="file_del" accept=".csv" disabled="true">
+    		&nbsp&nbsp&nbsp
+    		<button id="enviar_del" type="submit" style="left:20px;" class="btn btn-primary" disabled="true">Borrar Clientes</button>
+		</form>		
+
+		<br>
+
+		<form method="get" th:action="@{/download-csv}">
+     
+   			<input type="checkbox" id="del" name="del" value="exp" th:name="optExp" onchange="document.getElementById('enviar_exp').disabled = !this.checked;document.getElementById('type_exp').disabled = !this.checked;"> 
+    		<label for="html"><strong>Exportar</strong></label>
+   			&nbsp&nbsp&nbsp&nbsp
+   			<label for="html"><strong>Tipo Contacto:</strong></label> &nbsp
+    		<select name="type_modi" id="type_exp" th:name="typeContactExp" disabled="true">
+  				<option value="puri">Purina</option>
+  				<option value="prof">Professional</option>
+			</select>
+			&nbsp&nbsp&nbsp
+    		<button id="enviar_exp" type="submit" style="left:20px;" class="btn btn-primary" disabled="true">Exportar Clientes</button>
+		</form>		
+
+</fieldset>
+</div>
+
+</main>
+<!-- /.container -->
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
