@@ -40,6 +40,7 @@ public class FilesController {
         	  BulkContacts cont = new BulkContacts(file.getInputStream());
         	  cont.setEsquema(typeContact);
         	  cont.setMaxContactosToProcess(1);
+        	  cont.createContact();
     		  model.addAttribute("status", true);
     		 // Resultado res = new Resultado(1,1, 0, 1,0);
     		  Resultado res = new Resultado(cont.getResults().getTotalContactos(),
