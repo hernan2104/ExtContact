@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.interaxa.contactos.BulkContacts;
+
 @Controller
 public class FilesController {
 
@@ -35,6 +37,10 @@ public class FilesController {
             }
             else {
       		  model.addAttribute("status", true);
+        	  BulkContacts cont = new BulkContacts(file.getInputStream());
+        	  cont.setEsquema(typeContact);
+        	  cont.setMaxContactosToProcess(1);
+
             }
         }
         catch (Exception  e) {
