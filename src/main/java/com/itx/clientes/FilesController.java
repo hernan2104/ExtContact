@@ -40,7 +40,20 @@ public class FilesController {
         	  BulkContacts cont = new BulkContacts(file.getInputStream());
         	  cont.setEsquema(typeContact);
         	  cont.setMaxContactosToProcess(1);
-
+    		  model.addAttribute("status", true);
+    		 // Resultado res = new Resultado(1,1, 0, 1,0);
+    		  Resultado res = new Resultado(cont.getResults().getTotalContactos(),
+    				  						cont.getResults().getTotalContactosOk(),
+    				  						cont.getResults().getTotalContactosError(), 
+    				  						cont.getResults().getTotalContactosOk_API(), 
+    				  						cont.getResults().getTotalContactosError_API() );
+    		  model.addAttribute("resultado", res);
+    //		  logger.info("Resultado de la operacion");
+    //		  logger.info("Total Contactos: " + cont.getResults().getTotalContactos());
+    //		  logger.info("Total Contactos OK (csv): " + cont.getResults().getTotalContactosOk());
+    //		  logger.info("Total Contactos Error(csv): " + cont.getResults().getTotalContactosError());
+    //		  logger.info("Total Contactos OK(API): " + cont.getResults().getTotalContactosOk_API());
+    //		  logger.info("Total Contactos Error(API): " + cont.getResults().getTotalContactosError_API());
             }
         }
         catch (Exception  e) {
