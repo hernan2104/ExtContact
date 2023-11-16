@@ -41,6 +41,56 @@
 			<artifactId>jackson-datatype-joda</artifactId>
 			<version>2.13.2</version>
 		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.10.8</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.13</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.1-jre</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.4.0-b180830.0359</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.13.0</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.16.0-rc1</version>
+		</dependency>
+		<dependency>
+			<groupId>genesysSDK</groupId>
+			<artifactId>javax.servlet</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
