@@ -34,7 +34,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class FilesController {
-
+	String clienteID = "3490ed10-c18e-4219-ae3d-ae64af5fa9d9";
+	String clienteSecret = "6XfsLyXiXDnCPpGOR2dgBeQnjwEOY4GYbjYrfhoC3bA";
 	// inject via application.properties
 	
     @GetMapping("/")
@@ -57,9 +58,9 @@ public class FilesController {
             }
             else {
       		  model.addAttribute("status", true);
-        	  BulkContacts cont = new BulkContacts(file.getInputStream());
+        	  BulkContacts cont = new BulkContacts(file.getInputStream(), clienteID, clienteSecret);
         	  cont.setEsquema(typeContact);
-        	  cont.setMaxContactosToProcess(1);
+        	  cont.setMaxContactosToProcess(130);
         	  cont.createContact();
     		  model.addAttribute("status", true);
     		 // Resultado res = new Resultado(1,1, 0, 1,0);
@@ -98,8 +99,8 @@ public class FilesController {
        response.setContentType("text/csv");
        response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
              "attachment; filename=\"" + filename + "\"");
- 	  BulkContacts cont = new BulkContacts();
- 	  ArrayList<ClienteExport> clientes = cont.scanContacts(typeContact);
+ 	  BulkContacts cont = new BulkContacts(clienteID, clienteSecret);
+ 	  ArrayList<ClienteExport> clientes = cont.scanContacts(typeContact, 50);
       // create a csv writer/*
  	 HeaderColumnNameMappingStrategy<ClienteExport> strategy = new HeaderColumnNameMappingStrategy<>();
      strategy.setType(ClienteExport.class);
@@ -143,8 +144,8 @@ public class FilesController {
                 model.addAttribute("status", false);
           }
           else {
-        	  BulkContacts cont = new BulkContacts(file.getInputStream());
-        	  cont.setMaxContactosToProcess(2);
+        	  BulkContacts cont = new BulkContacts(file.getInputStream(),clienteID, clienteSecret);
+        	  cont.setMaxContactosToProcess(48);
         	  cont.deleteContact();
     		  model.addAttribute("status", true);
     		 // Resultado res = new Resultado(1,1, 0, 1,0);
@@ -176,4 +177,42 @@ public class FilesController {
     	return "file-upload-status";
     }
 
+    @PostMapping("/update-csv")
+    public String update(@RequestParam("file_modi") MultipartFile file, 
+    		@RequestParam(value = "typeContactModi", required = false) String typeContact,
+    		Model model) {
+    	
+        try {
+            if (file.isEmpty()) {
+                  model.addAttribute("message", "Seleccione el archivo para actualizar los contactos.");
+                  model.addAttribute("status", false);
+            }
+            else {
+      		  model.addAttribute("status", true);
+        	  BulkContacts cont = new BulkContacts(file.getInputStream(),clienteID, clienteSecret);
+        	  cont.setEsquema(typeContact);
+        	  cont.setMaxContactosToProcess(2);
+        	  cont.updateContact();
+    		  model.addAttribute("status", true);
+    		 // Resultado res = new Resultado(1,1, 0, 1,0);
+    		  Resultado res = new Resultado(cont.getResults().getTotalContactos(),
+    				  						cont.getResults().getTotalContactosOk(),
+    				  						cont.getResults().getTotalContactosError(), 
+    				  						cont.getResults().getTotalContactosOk_API(), 
+    				  						cont.getResults().getTotalContactosError_API() );
+    		  model.addAttribute("resultado", res);
+    //		  logger.info("Resultado de la operacion");
+    //		  logger.info("Total Contactos: " + cont.getResults().getTotalContactos());
+    //		  logger.info("Total Contactos OK (csv): " + cont.getResults().getTotalContactosOk());
+    //		  logger.info("Total Contactos Error(csv): " + cont.getResults().getTotalContactosError());
+    //		  logger.info("Total Contactos OK(API): " + cont.getResults().getTotalContactosOk_API());
+    //		  logger.info("Total Contactos Error(API): " + cont.getResults().getTotalContactosError_API());
+            }
+        }
+        catch (Exception  e) {
+          	 model.addAttribute("status", false);
+           	 model.addAttribute("message",e.getMessage());
+        }
+        return "file-upload-status";
+    }        
 }

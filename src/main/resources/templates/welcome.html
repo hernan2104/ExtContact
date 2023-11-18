@@ -26,12 +26,12 @@
 	<legend>Seleccionar la operación a realizar..</legend>
 		<form method="post" th:action="@{/upload-csv}" enctype="multipart/form-data">
      
-   			<input type="checkbox" id="exp" name="fav_language" value="exp" th:name="optAdd" onchange="document.getElementById('file').disabled = !this.checked;document.getElementById('type').disabled = !this.checked;document.getElementById('enviar').disabled = !this.checked;"> 
+   			<input type="checkbox" id="add" name="fav_language" value="exp" th:name="optAdd" onchange="document.getElementById('file').disabled = !this.checked;document.getElementById('typeAdd').disabled = !this.checked;document.getElementById('enviar').disabled = !this.checked;"> 
     		<label for="html"><strong>Crear</strong></label>
    			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
    
    			<label for="html"><strong>Tipo Contacto:</strong></label> &nbsp
-    		<select name="type" id="type" th:name="typeContactAdd" disabled="true">
+    		<select name="type" id="typeAdd" th:name="typeContactAdd" disabled="true">
   				<option value="puri">Purina</option>
   				<option value="prof">Professional</option>
 			</select>
@@ -43,7 +43,7 @@
 		
 		<br>
 
-		<form method="post" th:action="@{/upload-csv}" enctype="multipart/form-data">
+		<form method="post" th:action="@{/update-csv}" enctype="multipart/form-data">
      
    			<input type="checkbox" id="modi" name="modi" value="exp" th:name="optMod" onchange="document.getElementById('file_modi').disabled = !this.checked;document.getElementById('type_modi').disabled = !this.checked;document.getElementById('enviar_modi').disabled = !this.checked;"> 
     		<label for="html"><strong>Modificar</strong></label>
@@ -64,7 +64,7 @@
 
 		<form method="post" th:action="@{/upload-deletecsv}" enctype="multipart/form-data">
      
-   			<input type="checkbox" id="del" name="del" value="exp" th:name="optDel" onchange="document.getElementById('file_del').disabled = !this.checked;document.getElementById('enviar_del').disabled = !this.checked;"> 
+   			<input type="checkbox" id="delete" name="del" value="exp" th:name="optDel" onchange="getElementById('exportar').checked=false;getElementById('modi').checked=false;getElementById('add').checked=false;getElementById('file_del').disabled = !this.checked;document.getElementById('enviar_del').disabled = !this.checked;document.getElementById('enviar_exp').disabled = true;document.getElementById('type_exp').disabled = true;document.getElementById('typeAdd').disabled = true;document.getElementById('file').disabled = true;document.getElementById('enviar').disabled = true;document.getElementById('type_modi').disabled = true;document.getElementById('file_modi').disabled = true;document.getElementById('enviar_modi').disabled = true;"> 
     		<label for="html"><strong>Borrar</strong></label>
    			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  
     		<input type="file" name="file_del" class="form-control-file" id="file_del" accept=".csv" disabled="true">
@@ -76,13 +76,14 @@
 
 		<form method="get" th:action="@{/download-csv}">
      
-   			<input type="checkbox" id="del" name="del" value="exp" th:name="optExp" onchange="document.getElementById('enviar_exp').disabled = !this.checked;document.getElementById('type_exp').disabled = !this.checked;"> 
+   			<input type="checkbox" id="exportar" name="exp" value="exp" th:name="optExp" onchange="document.getElementById('enviar_exp').disabled = !this.checked;document.getElementById('type_exp').disabled = !this.checked;getElementById('file_del').disabled = !this.checked;document.getElementById('enviar_del').disabled = !this.checked;getElementById('modi').checked=false;getElementById('add').checked=false;getElementById('delete').checked=false;document.getElementById('enviar_del').disabled=true;document.getElementById('typeAdd').disabled = true;document.getElementById('file').disabled = true;document.getElementById('enviar').disabled = true;document.getElementById('file_modi').disabled = true;document.getElementById('enviar_modi').disabled = true;document.getElementById('type_modi').disabled = true;getElementById('file_del').disabled = true"> 
     		<label for="html"><strong>Exportar</strong></label>
    			&nbsp&nbsp&nbsp&nbsp
    			<label for="html"><strong>Tipo Contacto:</strong></label> &nbsp
     		<select name="type_modi" id="type_exp" th:name="typeContactExp" disabled="true">
   				<option value="puri">Purina</option>
   				<option value="prof">Professional</option>
+  				<option value="all">Todos</option>
 			</select>
 			&nbsp&nbsp&nbsp
     		<button id="enviar_exp" type="submit" style="left:20px;" class="btn btn-primary" disabled="true">Exportar Clientes</button>
