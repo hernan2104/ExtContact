@@ -26,7 +26,7 @@
 	<legend>Seleccionar la operación a realizar..</legend>
 		<form method="post" th:action="@{/upload-csv}" enctype="multipart/form-data">
      
-   			<input type="checkbox" id="add" name="fav_language" value="exp" th:name="optAdd" onchange="document.getElementById('file').disabled = !this.checked;document.getElementById('typeAdd').disabled = !this.checked;document.getElementById('enviar').disabled = !this.checked;"> 
+   			<input type="checkbox" id="add" name="fav_language" value="exp" th:name="optAdd" onchange="document.getElementById('file').disabled = !this.checked;document.getElementById('typeAdd').disabled = !this.checked;document.getElementById('enviar').disabled = !this.checked;getElementById('delete').checked=false;getElementById('exportar').checked=false;getElementById('modi').checked=false;document.getElementById('type_exp').disabled = true;document.getElementById('typeAdd').disabled = true;document.getElementById('file_modi').disabled = true;document.getElementById('enviar_modi').disabled = true;document.getElementById('type_modi').disabled = true;document.getElementById('enviar_exp').disabled = true;document.getElementById('enviar_del').disabled = true;getElementById('file_del').disabled = true;"> 
     		<label for="html"><strong>Crear</strong></label>
    			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
    
@@ -45,7 +45,7 @@
 
 		<form method="post" th:action="@{/update-csv}" enctype="multipart/form-data">
      
-   			<input type="checkbox" id="modi" name="modi" value="exp" th:name="optMod" onchange="document.getElementById('file_modi').disabled = !this.checked;document.getElementById('type_modi').disabled = !this.checked;document.getElementById('enviar_modi').disabled = !this.checked;"> 
+   			<input type="checkbox" id="modi" name="modi" value="exp" th:name="optMod" onchange="document.getElementById('file_modi').disabled = !this.checked;document.getElementById('type_modi').disabled = !this.checked;document.getElementById('enviar_modi').disabled = !this.checked;getElementById('exportar').checked=false;getElementById('add').checked=false;getElementById('delete').checked=false;document.getElementById('enviar_del').disabled=true;document.getElementById('enviar_exp').disabled = true;document.getElementById('type_exp').disabled = true;document.getElementById('typeAdd').disabled = true;document.getElementById('file').disabled = true;document.getElementById('enviar').disabled = true;document.getElementById('enviar_exp').disabled = true;document.getElementById('enviar_del').disabled = true;getElementById('file_del').disabled = true;"> 
     		<label for="html"><strong>Modificar</strong></label>
    			&nbsp&nbsp&nbsp
    
