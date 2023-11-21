@@ -60,7 +60,7 @@ public class FilesController {
       		  model.addAttribute("status", true);
         	  BulkContacts cont = new BulkContacts(file.getInputStream(), clienteID, clienteSecret);
         	  cont.setEsquema(typeContact);
-        	  cont.setMaxContactosToProcess(130);
+        	  cont.setMaxContactosToProcess(99999);
         	  cont.createContact();
     		  model.addAttribute("status", true);
     		 // Resultado res = new Resultado(1,1, 0, 1,0);
