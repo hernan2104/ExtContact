@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +38,7 @@ public class FilesController {
 	String clienteID = "3490ed10-c18e-4219-ae3d-ae64af5fa9d9";
 	String clienteSecret = "6XfsLyXiXDnCPpGOR2dgBeQnjwEOY4GYbjYrfhoC3bA";
 	// inject via application.properties
-	
+
     @GetMapping("/")
     public String main(Model model) {
 
@@ -215,4 +216,13 @@ public class FilesController {
         }
         return "file-upload-status";
     }        
+    
+
+    @GetMapping("/api/getUnDato")
+    private Test testAngular(){
+    	Test tst = new Test();
+    	tst.setLocalidad("Matanza");
+    	tst.setRazonSocial("Pepita la Pistolera");
+    	return tst;
+    }
 }
